@@ -1,13 +1,27 @@
 <h1>Your Recipes</h1>
-
-<% if @recipes.any? %>
-<ul>
-  <% @recipes.each do |recipe| %>
-  <li><%= recipe.name %></li>
-  <% end %>
-</ul>
-<% else %>
-<h3>There are no recipes!</h3>
-<% end %>
-
-<a href="/">Return Home</a>
+<div class="row">
+  <div class="col-sm-6">
+    <% if @recipes.any? %>
+    <ul>
+      <% @recipes.each do |recipe| %>
+      <li><%= recipe.name %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <h3>There are no recipes!</h3>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <h3>Add Recipes</h3>
+    <form class="form-group well" action="/recipes" method="post">
+      <label for="name">Name</label>
+      <input class="form-control" type="text" name="name">
+      <label for="ingredient">Ingredient</label>
+      <input class="form-control" type="text" name="ingredient">
+      <label for="instruction">Instruction</label>
+      <input class="form-control" type="text" name="instruction">
+      <button class="btn btn-success" type="submit" name="button">Create Recipe</button>
+    </form>
+    <h4><a href="/">Return Home</a></h4>
+  </div>
+</div>
