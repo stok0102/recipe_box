@@ -21,4 +21,13 @@ describe Recipe do
       expect(recipe.tags).to(eq([french]))
     end
   end
+
+  describe 'push tag' do
+    it "adds a tag to a recipe" do
+      quiche = Recipe.create({name: 'quiche'})
+      french = Tag.create({:name => 'French'})
+      quiche.tags.push(french)
+      expect(quiche.tags).to(eq([french]))
+    end
+  end
 end
