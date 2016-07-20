@@ -1,0 +1,45 @@
+<h1><%= @recipe.name %></h1>
+<div class="row">
+  <div class="col-sm-6">
+
+    <h2>Ingredients: </h2>
+    <ul>
+      <% @recipe.ingredient.split.each do |ingredient| %>
+      <li><%= ingredient %></li>
+      <% end %>
+    </ul>
+
+    <h2>Instructions: </h2>
+    <ol>
+      <% @recipe.instruction.split.each do |instruction| %>
+      <li><%= instruction %></li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="col-sm-6">
+    <h3>Tags</h3>
+
+    <% if @recipe.tags.any? %>
+    <ul>
+      <% @recipe.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>This recipe needs tags!</p>
+    <% end %>
+
+    <form action="/recipe/<%= @recipe.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <select class="" name="tag">
+        <% @tags.each do |tag| %>
+        <option value="<%= tag.id %>"><%= tag.name %></option>
+        <% end %>
+      </select>
+      <button type="submit" name="button">Apply Tags</button>
+    </form>
+  </div>
+</div>
+
+<h3><a href="/">Home</a></h3>
+<h3><a href="/recipes">Recipes</a></h3>

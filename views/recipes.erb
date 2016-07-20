@@ -4,7 +4,7 @@
     <% if @recipes.any? %>
     <ul>
       <% @recipes.each do |recipe| %>
-      <li><%= recipe.name %></li>
+      <li> <a href="/recipe/ <%= recipe.id %>"> <%= recipe.name %></a></li>
       <% end %>
     </ul>
     <% else %>
@@ -16,10 +16,10 @@
     <form class="form-group well" action="/recipes" method="post">
       <label for="name">Name</label>
       <input class="form-control" type="text" name="name">
-      <label for="ingredient">Ingredient</label>
-      <input class="form-control" type="text" name="ingredient">
-      <label for="instruction">Instruction</label>
-      <input class="form-control" type="text" name="instruction">
+      <label for="ingredient">Enter each ingredient on its own line</label>
+      <textarea class="form-control" rows="8" cols="40" name="ingredient"></textarea>
+      <label for="instruction">Enter each instruction on its own line</label>
+      <textarea class="form-control" type="text" name="instruction" rows="8" cols="40"></textarea>
       <button class="btn btn-success" type="submit" name="button">Create Recipe</button>
     </form>
     <h4><a href="/">Return Home</a></h4>
