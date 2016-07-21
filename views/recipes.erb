@@ -11,9 +11,9 @@
     <h3>There are no recipes!</h3>
     <% end %>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-6 well">
     <h3>Add Recipes</h3>
-    <form class="form-group well" action="/recipes" method="post">
+    <form class="form-group" action="/recipes" method="post">
       <label for="name">Name</label>
       <input class="form-control" type="text" name="name">
       <label for="ingredient">Enter each ingredient on its own line</label>
@@ -22,6 +22,16 @@
       <textarea class="form-control" type="text" name="instruction" rows="8" cols="40"></textarea>
       <button class="btn btn-success" type="submit" name="button">Create Recipe</button>
     </form>
+    <form class="" action="index.html" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <% @tags.each do |tag| %>
+      <label><input type="checkbox" name="checkbox" value="<%= tag.id %>"><%= tag.name %></label>
+      <% end %>
+      <button type="submit" class="btn btn-success" name="button">Apply Tags</button>
+    </form>
+  </div>
+</div>
+
     <h4><a href="/">Return Home</a></h4>
   </div>
 </div>

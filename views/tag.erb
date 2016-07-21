@@ -1,0 +1,31 @@
+<h1><%= @tag.name %></h1>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Recipes</h3>
+
+    <% if @tag.recipes.any? %>
+    <ul>
+      <% @tag.recipes.each do |recipe| %>
+      <li><a href="/recipe/ <%= recipe.id %>"> <%= recipe.name %></a></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>This tag needs recipes!</p>
+    <% end %>
+
+    <form action="/tag/<%= @tag.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <label for="new_tag">Rename Your Tag</label>
+      <input type="text" name="new_tag" value="">
+      <button type="submit" name="button">Rename Tag</button>
+    </form>
+    <form action="/tag/<%= @tag.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <label for="delete_tag">Delete This Tag</label>
+      <button type="submit" name="button">Delete Tag</button>
+    </form>
+  </div>
+</div>
+
+<h3><a href="/">Home</a></h3>
+<h3><a href="/tags">Tags</a></h3>

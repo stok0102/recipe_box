@@ -10,6 +10,7 @@ end
 
 get '/recipes' do
   @recipes = Recipe.all
+  @tags = Tag.all
   erb :recipes
 end
 
@@ -43,4 +44,23 @@ patch '/recipe/:id' do
   @recipe = Recipe.find(params.fetch('id'))
   @recipe.tags.push(tag)
   redirect("/recipe/".concat(@recipe.id().to_s()))
+end
+
+get '/tag/:id' do
+  @recipes = Recipe.all
+  @tag = Tag.find(params.fetch('id'))
+  erb :tag
+end
+
+patch '/tag/:id' do
+  name = params.fetch('new_tag')
+  @tag = Tag.find(params.fetch('id'))
+  @tag.update({name: name})
+  redirect('/tag/'.concat(@tag.id().to_s()))
+end
+
+delete '/tag/:id' do
+  @tag = Tag.find(params.fetch('id'))
+  @tag.delete()
+  redirect('/tags')
 end
