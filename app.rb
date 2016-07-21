@@ -18,9 +18,15 @@ post '/recipes' do
   name = params.fetch 'name'
   ingredient = params.fetch 'ingredient'
   instruction = params.fetch 'instruction'
-  tags = []
-
+  tags_array = []
+  params[:tag_box].each do |tag|
+    tags_array.push(tag.to_i)
+  end
   @recipe = Recipe.create({name: name, instruction: instruction, ingredient: ingredient})
+  tags_array.each do |id|
+    tag_hash = Tag.find(id)
+    @recipe.tags.push(tag_hash)
+  end
   redirect '/recipes'
 end
 
@@ -48,6 +54,13 @@ patch '/recipe/:id' do
   redirect("/recipe/".concat(@recipe.id().to_s()))
 end
 
+patch '/recipe/:id/rate' do
+  rating = params.fetch('rating')
+  @recipe = Recipe.find(params.fetch('id'))
+  @recipe.update({rating: rating})
+  redirect("/recipe/".concat(@recipe.id().to_s()))
+end
+
 get '/tag/:id' do
   @recipes = Recipe.all
   @tag = Tag.find(params.fetch('id'))
@@ -65,4 +78,10 @@ delete '/tag/:id' do
   @tag = Tag.find(params.fetch('id'))
   @tag.delete()
   redirect('/tags')
+end
+
+delete '/recipe/:id' do
+  @recipe = Recipe.find(params.fetch('id'))
+  @recipe.delete()
+  redirect('/recipes')
 end

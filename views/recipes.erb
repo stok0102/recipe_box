@@ -20,15 +20,14 @@
       <textarea class="form-control" rows="8" cols="40" name="ingredient"></textarea>
       <label for="instruction">Enter each instruction on its own line</label>
       <textarea class="form-control" type="text" name="instruction" rows="8" cols="40"></textarea>
+      <% @tags.each do |tag| %>
+      <label><input type="checkbox" name="tag_box[]" value="<%= tag.id %>"><%= tag.name %></label>
+      <% end %>
       <button class="btn btn-success" type="submit" name="button">Create Recipe</button>
     </form>
-    <form class="" action="index.html" method="post">
-      <input type="hidden" name="_method" value="patch">
-      <% @tags.each do |tag| %>
-      <label><input type="checkbox" name="checkbox" value="<%= tag.id %>"><%= tag.name %></label>
-      <% end %>
+    <!-- <form class="" action="index.html" method="post">
       <button type="submit" class="btn btn-success" name="button">Apply Tags</button>
-    </form>
+    </form> -->
   </div>
 </div>
 

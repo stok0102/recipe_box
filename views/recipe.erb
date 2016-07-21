@@ -1,4 +1,5 @@
 <h1><%= @recipe.name %></h1>
+<h3>Your Rating : <%= @recipe.rating %></h3>
 <div class="row">
   <div class="col-sm-6">
 
@@ -15,7 +16,13 @@
       <li><%= instruction %></li>
       <% end %>
     </ol>
+    <form action="/recipe/<%= @recipe.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <label for="delete_tag">Delete This Recipe</label>
+      <button type="submit" name="button">Delete Recipe</button>
+    </form>
   </div>
+
   <div class="col-sm-6">
     <h3>Tags</h3>
 
@@ -37,6 +44,18 @@
         <% end %>
       </select>
       <button type="submit" name="button">Apply Tags</button>
+    </form>
+
+    <h3>Rating</h3>
+
+    <form action="/recipe/<%= @recipe.id %>/rate" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <input type="radio" name="rating" value="1" checked> Yuk! <br>
+      <input type="radio" name="rating" value="2"> Meh <br>
+      <input type="radio" name="rating" value="3"> Ok <br>
+      <input type="radio" name="rating" value="4"> Si <br>
+      <input type="radio" name="rating" value="5"> Me Gusta <br>
+      <button type="submit" name="button">Rate</button>
     </form>
   </div>
 </div>
