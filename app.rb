@@ -9,7 +9,7 @@ get '/' do
 end
 
 get '/recipes' do
-  @recipes = Recipe.all
+  @recipes = Recipe.all.order('rating DESC')
   @tags = Tag.all
   erb :recipes
 end
