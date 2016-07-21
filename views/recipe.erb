@@ -1,6 +1,6 @@
 <h1><%= @recipe.name %></h1>
 <h3>Your Rating : <%= @recipe.rating %></h3>
-<div class="row">
+<div class="row well">
   <div class="col-sm-6">
 
     <h2>Ingredients: </h2>
@@ -16,6 +16,14 @@
       <li><%= instruction %></li>
       <% end %>
     </ol>
+
+    <form action="/recipe/<%= @recipe.id %>/name" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <label for="new_recipe_name">Rename Your Recipe</label>
+      <input type="text" name="new_recipe_name" value="">
+      <button type="submit" name="button">Rename Recipe</button>
+    </form>
+
     <form action="/recipe/<%= @recipe.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
       <label for="delete_tag">Delete This Recipe</label>

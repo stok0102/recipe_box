@@ -1,4 +1,15 @@
-<h1>Recipe Box</h1>
+<div class="jumbotron">
+  <h1>Recipe Box</h1>
 
-<a href="/recipes">View All Recipes</a>
-<a href="/tags">View All Categories</a>
+  <a href="/recipes"><button class='btn btn-success'>View All Recipes</button></a>
+  <a href="/tags"><button class='btn btn-success'>View All Categories</button></a>
+
+  <form class="form-group" action="index.html" method="post">
+    <label for="search">Search by:</label>
+    <input type="radio" name="search" value="ingredient">Ingredient
+    <input type="radio" name="search" value="recipe">Recipe
+    <input type="radio" name="search" value="category">Category
+    <input type="text" name="search" class='form-control'>
+    <button class='btn btn-success' type="submit" name="button">Search</button>
+  </form>
+</div>

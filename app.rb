@@ -49,9 +49,16 @@ get '/recipe/:id' do
 end
 
 patch '/recipe/:id' do
-  tag = Tag.find(params.fetch('tag'))
   @recipe = Recipe.find(params.fetch('id'))
+  tag = Tag.find(params.fetch('tag'))
   @recipe.tags.push(tag)
+  redirect("/recipe/".concat(@recipe.id().to_s()))
+end
+
+patch '/recipe/:id/name' do
+  new_recipe_name = params.fetch('new_recipe_name')
+  @recipe = Recipe.find(params.fetch('id'))
+  @recipe.update({:name => new_recipe_name})
   redirect("/recipe/".concat(@recipe.id().to_s()))
 end
 
@@ -96,6 +103,8 @@ get '/rating/:id' do
     erb :error
   end
 end
+
+
 
 # post '/ratings' do
 #   id = params.fetch('rating').to_i
