@@ -18,6 +18,8 @@ post '/recipes' do
   name = params.fetch 'name'
   ingredient = params.fetch 'ingredient'
   instruction = params.fetch 'instruction'
+  tags = []
+
   @recipe = Recipe.create({name: name, instruction: instruction, ingredient: ingredient})
   redirect '/recipes'
 end
