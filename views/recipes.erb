@@ -15,11 +15,11 @@
     <h3>Add Recipes</h3>
     <form class="form-group" action="/recipes" method="post">
       <label for="name">Name</label>
-      <input class="form-control" type="text" name="name">
+      <input class="form-control" type="text" name="name" required>
       <label for="ingredient">Enter each ingredient on its own line</label>
-      <textarea class="form-control" rows="8" cols="40" name="ingredient"></textarea>
+      <textarea class="form-control" rows="8" cols="40" name="ingredient" required></textarea>
       <label for="instruction">Enter each instruction on its own line</label>
-      <textarea class="form-control" type="text" name="instruction" rows="8" cols="40"></textarea>
+      <textarea class="form-control" type="text" name="instruction" rows="8" cols="40" required></textarea>
       <% @tags.each do |tag| %>
       <label><input type="checkbox" name="tag_box[]" value="<%= tag.id %>"><%= tag.name %></label>
       <% end %>
