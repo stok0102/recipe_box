@@ -1,0 +1,10 @@
+<h1>Recipes</h1>
+<% if @recipes.any? %>
+<ul>
+  <% @recipes.each do |recipe| %>
+  <li> <a href="/recipe/ <%= recipe.id %>"> <%= recipe.name %></a><%= recipe.rating %> <span class="glyphicon glyphicon-star"></span></li>
+  <% end %>
+</ul>
+<% else %>
+<h3>There are no recipes!</h3>
+<% end %>

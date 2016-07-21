@@ -4,7 +4,7 @@
     <% if @recipes.any? %>
     <ul>
       <% @recipes.each do |recipe| %>
-      <li> <a href="/recipe/ <%= recipe.id %>"> <%= recipe.name %></a></li>
+      <li> <a href="/recipe/ <%= recipe.id %>"> <%= recipe.name %></a> <a href="/rating/<%= recipe.rating %>"><%= recipe.rating %> <span class="glyphicon glyphicon-star"></span></a></li>
       <% end %>
     </ul>
     <% else %>
@@ -23,6 +23,12 @@
       <% @tags.each do |tag| %>
       <label><input type="checkbox" name="tag_box[]" value="<%= tag.id %>"><%= tag.name %></label>
       <% end %>
+      <label for="rating">Rating</label> <br>
+      <input type="radio" name="rating" value="1" checked> Yuk! <br>
+      <input type="radio" name="rating" value="2"> Meh <br>
+      <input type="radio" name="rating" value="3"> Ok <br>
+      <input type="radio" name="rating" value="4"> Si <br>
+      <input type="radio" name="rating" value="5"> Me Gusta <br>
       <button class="btn btn-success" type="submit" name="button">Create Recipe</button>
     </form>
     <!-- <form class="" action="index.html" method="post">
@@ -30,6 +36,7 @@
     </form> -->
   </div>
 </div>
+
 
     <h4><a href="/">Return Home</a></h4>
   </div>

@@ -18,11 +18,12 @@ post '/recipes' do
   name = params.fetch 'name'
   ingredient = params.fetch 'ingredient'
   instruction = params.fetch 'instruction'
+  rating = params.fetch 'rating'
   tags_array = []
   params[:tag_box].each do |tag|
     tags_array.push(tag.to_i)
   end
-  @recipe = Recipe.create({name: name, instruction: instruction, ingredient: ingredient})
+  @recipe = Recipe.create({name: name, instruction: instruction, ingredient: ingredient, rating: rating})
   tags_array.each do |id|
     tag_hash = Tag.find(id)
     @recipe.tags.push(tag_hash)
@@ -85,3 +86,19 @@ delete '/recipe/:id' do
   @recipe.delete()
   redirect('/recipes')
 end
+
+get '/rating/:id' do
+  id = params.fetch('id').to_i
+  if id > 0
+    @recipes = Recipe.where(rating: id)
+    erb :ratings
+  else
+    erb :error
+  end
+end
+
+# post '/ratings' do
+#   id = params.fetch('rating').to_i
+#   @recipes = Recipe.where(rating: id)
+#   redirect '/ratings'
+# end
